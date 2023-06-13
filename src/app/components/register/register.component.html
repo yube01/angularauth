@@ -1,10 +1,15 @@
 <div class="register-container">
   <h2>Register</h2>
-  <form>
-    <input type="text" placeholder="Username" required>
-    <input type="email" placeholder="Email" required>
-    <input type="password" placeholder="Password" required>
-    <input type="password" placeholder="Confirm Password" required>
-    <button type="submit">Register</button>
+  <form [formGroup]="registerForm">
+
+    <input type="email" placeholder="Email" required formControlName="email">
+    <i *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
+      Email is required and must be valid
+    </i>
+    <input type="password" placeholder="Password" required formControlName="password">
+    <i  *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+      Password is required and must contain more than 5 words
+    </i>
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
   </form>
 </div>
