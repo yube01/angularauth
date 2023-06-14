@@ -1,11 +1,11 @@
 <div class="login-container">
   <h2>Login</h2>
-  <form [formGroup]="loginForm">
-    <input type="email" placeholder="email" required>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input type="email" placeholder="email" required formControlName="email">
     <i *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
       Email is required and must be valid
     </i>
-    <input type="password" placeholder="Password" required>
+    <input type="password" placeholder="Password" required formControlName="password">
     <i *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
       Password is required
     </i>

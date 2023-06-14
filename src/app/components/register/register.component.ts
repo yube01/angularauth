@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SupabaseService } from 'src/app/service/supabase.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ export class RegisterComponent {
   registerForm!:FormGroup
 
 
-  constructor(private formBuilder:FormBuilder){
+  constructor(private formBuilder:FormBuilder,private supaService:SupabaseService){
 
 
     this.registerForm = this.formBuilder.group({
@@ -25,6 +26,17 @@ export class RegisterComponent {
     })
 
   }
+
+public onSubmit(){
+
+  this.supaService.signUp(this.registerForm.value.email,this.registerForm.value.password).then((res)=>
+  console.log(res)).catch((error)=>
+  console.log(error))
+
+}
+
+
+
 
 
 
